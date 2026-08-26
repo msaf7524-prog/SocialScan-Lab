@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#030711">
-<title>SocialScan Lab v0.5</title>
+<title>SocialScan Lab v0.6</title>
 <style>
 :root{--bg:#030711;--panel:#071222e8;--line:#173b59;--cyan:#42e8ff;--green:#57ffb0;--amber:#ffc857;--red:#ff637c;--text:#edf8ff;--muted:#7f9aae;--purple:#b58cff}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text)}
@@ -13,7 +13,7 @@ body{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;back
 .scan{position:fixed;left:0;right:0;top:-2px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 18px var(--cyan);opacity:.18;animation:s 8s linear infinite}@keyframes s{to{transform:translateY(110vh)}}
 .shell{position:relative;z-index:1;width:min(1180px,94%);margin:auto;padding:18px 0 42px}.panel{border:1px solid rgba(66,232,255,.2);background:linear-gradient(135deg,rgba(8,24,43,.93),rgba(4,12,24,.97));border-radius:18px;box-shadow:0 22px 70px rgba(0,0,0,.34)}
 .top{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;margin-bottom:16px}.brand{display:flex;align-items:center;gap:12px;direction:ltr}.logo{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--cyan);color:var(--cyan);font:900 24px ui-monospace,monospace;clip-path:polygon(20% 0,80% 0,100% 20%,100% 80%,80% 100%,20% 100%,0 80%,0 20%)}h1{font:800 19px ui-monospace,monospace;margin:0}h1 span,.eyebrow,.title{color:var(--cyan)}.brand p{margin:4px 0 0;color:var(--muted);font:500 8px ui-monospace,monospace}.online{direction:ltr;font:700 10px ui-monospace,monospace;color:var(--green)}
-.hero{padding:24px;margin-bottom:16px}.eyebrow,.title{direction:ltr;font:700 10px ui-monospace,monospace;letter-spacing:1.4px}.hero h2{font-size:clamp(28px,6vw,54px);line-height:1.08;margin:15px 0 10px}.muted{color:var(--muted);line-height:1.75}
+.hero{padding:24px;margin-bottom:16px}.eyebrow,.title{direction:ltr;font:700 10px ui-monospace,monospace;letter-spacing:1.4px}.hero h2{font-size:clamp(28px,6vw,54px);line-height:1.08;margin:15px 0 10px}.muted{color:var(--muted);line-height:1.75}.ar-mini{display:block;font-size:9px;line-height:1.35;color:#89a9bc;font-weight:500;margin-top:2px;direction:rtl;text-align:inherit}.bi{display:inline-flex;flex-direction:column;gap:1px;line-height:1.15}.bi.center{align-items:center}.bi.left{align-items:flex-start}.bi.right{align-items:flex-end}
 .modes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 12px}.mode{border:1px solid #173b59;background:#050e1b;border-radius:14px;padding:15px;cursor:pointer;text-align:right;color:var(--text)}.mode.active{border-color:var(--cyan);box-shadow:inset 0 0 24px rgba(66,232,255,.08)}.mode strong{display:block;margin:5px 0}.tag{font:700 9px ui-monospace,monospace;color:var(--green);direction:ltr}.mode small{color:var(--muted)}
 .input{display:grid;grid-template-columns:auto 1fr auto;align-items:center;border:1px solid #1b4c70;background:#020914;border-radius:12px;overflow:hidden;direction:ltr}.prompt{padding-left:15px;color:var(--cyan);font:900 15px ui-monospace,monospace}input{min-width:0;border:0;outline:0;background:transparent;color:var(--text);padding:17px;font-size:14px}button{border:0;padding:17px 22px;font-weight:900;cursor:pointer;background:linear-gradient(135deg,#2bd9f4,#51ffc4);color:#031019}button.alt{background:#0b1d2d;color:var(--cyan);border:1px solid #1a4968;border-radius:10px;padding:12px 14px}button.ghost{background:transparent;color:var(--muted);border:1px solid #173b59;border-radius:10px;padding:10px 12px}
 .notice,.error,.info{margin-top:14px;padding:12px 14px;font-size:11px;line-height:1.75}.notice{border-right:3px solid var(--cyan);background:rgba(66,232,255,.06);color:#a9cddd}.error{display:none;border-right:3px solid var(--red);background:rgba(255,99,124,.07);color:#ffc0ca}.info{border-right:3px solid var(--purple);background:rgba(181,140,255,.06);color:#cdb8ff}
@@ -22,7 +22,7 @@ body{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;back
 .owner-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.connect{border:1px solid #183e5b;background:#050e1a;border-radius:14px;padding:16px}.connect h3{margin:0 0 6px}.connect p{font-size:11px;color:var(--muted);line-height:1.65}.scope{padding:10px;margin-top:7px;font-size:10px;direction:ltr;color:#9dc8df;border:1px solid #112b41;border-radius:10px;background:#050e1b}
 .consent-list{display:grid;gap:8px}.consent-row{display:flex;justify-content:space-between;gap:12px;padding:11px;border:1px solid #112b41;background:#050e1b;border-radius:10px;font-size:11px}.yes{color:var(--green)}.no{color:var(--red)}
 .loading{align-items:center;gap:20px;direction:ltr}.radar{width:66px;height:66px;border:1px solid var(--cyan);border-radius:50%;position:relative;background:repeating-radial-gradient(circle,transparent 0 10px,rgba(66,232,255,.16) 11px 12px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:50%;height:1px;background:var(--cyan);transform-origin:left;animation:r 1.1s linear infinite}@keyframes r{to{transform:rotate(360deg)}}
-.results{display:none}.tabs{display:flex;gap:8px;overflow:auto;padding:8px;margin-bottom:12px;direction:ltr}.tab{white-space:nowrap;background:#081726;color:#8fb6cb;border:1px solid #173b59;border-radius:10px;padding:10px 12px}.tab.active{color:#031019;background:linear-gradient(135deg,#2bd9f4,#51ffc4)}
+.results{display:none}.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:8px;margin-bottom:12px;direction:ltr}.tab{min-width:0;background:#081726;color:#8fb6cb;border:1px solid #173b59;border-radius:10px;padding:9px 5px;font-size:10px;line-height:1.15}.tab .ar-mini{font-size:7.5px;color:#6f92a7;text-align:center}.tab.active{color:#031019;background:linear-gradient(135deg,#2bd9f4,#51ffc4)}.tab.active .ar-mini{color:#103342}
 .tabpane{display:none}.tabpane.active{display:block}.grid2{display:grid;grid-template-columns:1fr 1.2fr;gap:16px}.grid2>.panel,.full.panel{padding:20px}
 .head{display:flex;gap:14px;align-items:center}.avatar,.placeholder{width:88px;height:88px;border-radius:20px;border:1px solid #245a7b;background:#07111f}.avatar{object-fit:cover}.placeholder{display:grid;place-items:center;font:900 28px ui-monospace,monospace;color:var(--purple)}
 .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px;direction:ltr}.metrics div,.card,.bio,.hist{background:#050e1b;border:1px solid #112b41;border-radius:10px}.metrics div{padding:12px;text-align:center}.metrics b{display:block;color:var(--cyan);font-size:16px}.metrics span,.card span{font-size:8px;color:var(--muted)}
@@ -32,79 +32,79 @@ body{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;back
 .rec{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid #12304a;background:#050e1a;border-radius:10px;margin:8px 0}.rec b{color:var(--cyan);direction:ltr;min-width:26px}.rec span{line-height:1.7;text-align:right;flex:1}
 .hist{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:11px;margin:8px 0}.hist strong{display:block;font-size:12px}.hist small{color:var(--muted);font-size:9px}
 footer{text-align:center;color:#3d607a;font:500 9px ui-monospace,monospace;margin-top:24px;letter-spacing:1px;direction:ltr}
-@media(max-width:760px){.online{display:none}.hero{padding:20px}.brand p{display:none}.modes,.owner-grid,.grid2{grid-template-columns:1fr}.input{grid-template-columns:auto 1fr}.input button{grid-column:1/-1}.data{grid-template-columns:1fr}.settings-row{grid-template-columns:1fr}.scorewrap{align-items:flex-start}}
+@media(max-width:760px){.online{display:none}.tabs{gap:4px;padding:5px}.tab{padding:8px 2px;font-size:8.5px}.tab .ar-mini{font-size:6.8px}.section{align-items:flex-start;gap:8px}.section .title{max-width:72%}.hero{padding:20px}.brand p{display:none}.modes,.owner-grid,.grid2{grid-template-columns:1fr}.input{grid-template-columns:auto 1fr}.input button{grid-column:1/-1}.data{grid-template-columns:1fr}.settings-row{grid-template-columns:1fr}.scorewrap{align-items:flex-start}}
 </style>
 </head>
 <body>
 <div class="grid"></div><div class="scan"></div>
 <main class="shell">
-<header class="top panel"><div class="brand"><div class="logo">S</div><div><h1>SocialScan <span>LAB</span></h1><p>GLOBAL SOCIAL SECURITY INTELLIGENCE</p></div></div><div class="online">SYSTEM ONLINE</div></header>
+<header class="top panel"><div class="brand"><div class="logo">S</div><div><h1>SocialScan <span>LAB</span></h1><p>GLOBAL SOCIAL SECURITY INTELLIGENCE<span class="ar-mini">استخبارات الأمان للحسابات الاجتماعية</span></p></div></div><div class="online"><span class="bi center">SYSTEM ONLINE<span class="ar-mini">النظام متصل</span></span></div></header>
 
 <section class="hero panel">
-<div class="eyebrow">SECURITY COMMAND CENTER / V0.5 CORE FIX</div>
+<div class="eyebrow">SECURITY COMMAND CENTER / V0.6 BILINGUAL</div>
 <h2>فحص موثوق، واضح، وبموافقة صاحب الحساب</h2>
 <p class="muted">النسخة الجديدة تفصل الفحص العام عن فحص المالك، ولا تعرض أي معلومة على أنها مؤكدة إذا لم يتم التحقق منها.</p>
 
 <div class="modes">
-<button id="publicMode" type="button" class="mode active"><span class="tag">PUBLIC SCAN</span><strong>فحص عام</strong><small>رابط الحساب + البيانات العامة المتاحة فقط.</small></button>
-<button id="ownerMode" type="button" class="mode"><span class="tag">OWNER AUTHORIZED</span><strong>أنا صاحب الحساب</strong><small>تسجيل دخول رسمي + موافقة على الصلاحيات.</small></button>
+<button id="publicMode" type="button" class="mode active"><span class="tag bi right">PUBLIC SCAN<span class="ar-mini">الفحص العام</span></span><strong>فحص عام</strong><small>رابط الحساب + البيانات العامة المتاحة فقط.</small></button>
+<button id="ownerMode" type="button" class="mode"><span class="tag bi right">OWNER AUTHORIZED<span class="ar-mini">بموافقة مالك الحساب</span></span><strong>أنا صاحب الحساب</strong><small>تسجيل دخول رسمي + موافقة على الصلاحيات.</small></button>
 </div>
 
 <div id="publicInput">
-<form id="form"><div class="input"><span class="prompt">&gt;_</span><input id="url" placeholder="YouTube أو TikTok URL"><button>START PUBLIC SCAN</button></div></form>
+<form id="form"><div class="input"><span class="prompt">&gt;_</span><input id="url" placeholder="YouTube أو TikTok URL"><button><span class="bi center">START PUBLIC SCAN<span class="ar-mini">ابدأ الفحص العام</span></span></button></div></form>
 </div>
 
 <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
-<button class="alt" id="settingsBtn" type="button">⚙ API SETTINGS</button>
-<button class="ghost" id="clearBtn" type="button">CLEAR HISTORY</button>
+<button class="alt" id="settingsBtn" type="button"><span class="bi center">⚙ API SETTINGS<span class="ar-mini">إعدادات واجهة API</span></span></button>
+<button class="ghost" id="clearBtn" type="button"><span class="bi center">CLEAR HISTORY<span class="ar-mini">مسح السجل</span></span></button>
 </div>
 <div class="notice">عدم توفر معلومة لا يُعامل كخطر. درجة الأمان تعتمد فقط على الأدلة التي تم فحصها، ونُظهر Coverage منفصلًا عن Score.</div>
 <div id="err" class="error"></div>
 </section>
 
 <section id="ownerPanel" class="owner panel">
-<div class="section"><span class="title">OWNER AUTHORIZED SCAN</span><b>SEPARATE FLOW</b></div>
+<div class="section"><span class="title bi left">OWNER AUTHORIZED SCAN<span class="ar-mini">فحص بموافقة مالك الحساب</span></span><b class="bi center">SEPARATE FLOW<span class="ar-mini">مسار مستقل</span></b></div>
 <div class="owner-grid">
-<div class="connect"><h3>YouTube / Google</h3><p>سيتم الربط لاحقًا عبر OAuth رسمي. لا يتم استخدام رابط الحساب هنا كبديل عن التفويض.</p><div class="scope">OWNER LOGIN REQUIRED</div><button class="alt" type="button" disabled>GOOGLE CONNECT — NEXT</button></div>
-<div class="connect"><h3>TikTok</h3><p>هذا المسار مخصص لصاحب الحساب فقط. ستظهر نافذة الموافقة قبل بدء أي فحص عميق.</p><div class="scope">user.info.basic</div><div class="scope">user.info.profile</div><div class="scope">user.info.stats</div><div class="scope">video.list</div><button class="alt" id="openConsent" type="button">REVIEW TIKTOK CONSENT</button></div>
+<div class="connect"><h3>YouTube / Google</h3><p>سيتم الربط لاحقًا عبر OAuth رسمي. لا يتم استخدام رابط الحساب هنا كبديل عن التفويض.</p><div class="scope">OWNER LOGIN REQUIRED<span class="ar-mini">تسجيل دخول المالك مطلوب</span></div><button class="alt" type="button" disabled>GOOGLE CONNECT — NEXT<span class="ar-mini">ربط Google — قريباً</span></button></div>
+<div class="connect"><h3>TikTok</h3><p>هذا المسار مخصص لصاحب الحساب فقط. ستظهر نافذة الموافقة قبل بدء أي فحص عميق.</p><div class="scope">user.info.basic</div><div class="scope">user.info.profile</div><div class="scope">user.info.stats</div><div class="scope">video.list</div><button class="alt" id="openConsent" type="button"><span class="bi center">REVIEW TIKTOK CONSENT<span class="ar-mini">مراجعة موافقة TikTok</span></span></button></div>
 </div>
 </section>
 
 <section id="consentPanel" class="consent panel">
-<div class="section"><span class="title">CONSENT CENTER</span><b>BEFORE OAUTH</b></div>
+<div class="section"><span class="title bi left">CONSENT CENTER<span class="ar-mini">مركز الموافقة</span></span><b class="bi center">BEFORE OAUTH<span class="ar-mini">قبل تسجيل الدخول</span></b></div>
 <p class="muted">هذه الشاشة توضح للمستخدم ما سنطلبه قبل أن ينتقل إلى تسجيل الدخول الرسمي لدى TikTok.</p>
 <div class="consent-list">
-<div class="consent-row"><span>قراءة الاسم والصورة والبيانات التي وافق عليها المستخدم</span><b class="yes">YES</b></div>
-<div class="consent-row"><span>قراءة الإحصاءات المسموح بها عبر الصلاحيات</span><b class="yes">YES</b></div>
-<div class="consent-row"><span>قراءة قائمة الفيديوهات إذا منح user الفيديو صلاحية video.list</span><b class="yes">YES</b></div>
-<div class="consent-row"><span>طلب أو قراءة كلمة المرور</span><b class="no">NEVER</b></div>
-<div class="consent-row"><span>الوصول لبيانات لا توفرها TikTok رسميًا</span><b class="no">NO</b></div>
-<div class="consent-row"><span>إلغاء الربط لاحقًا</span><b class="yes">SUPPORTED DESIGN</b></div>
+<div class="consent-row"><span>قراءة الاسم والصورة والبيانات التي وافق عليها المستخدم</span><b class="yes"><span class="bi center">YES<span class="ar-mini">نعم</span></span></b></div>
+<div class="consent-row"><span>قراءة الإحصاءات المسموح بها عبر الصلاحيات</span><b class="yes"><span class="bi center">YES<span class="ar-mini">نعم</span></span></b></div>
+<div class="consent-row"><span>قراءة قائمة الفيديوهات إذا منح user الفيديو صلاحية video.list</span><b class="yes"><span class="bi center">YES<span class="ar-mini">نعم</span></span></b></div>
+<div class="consent-row"><span>طلب أو قراءة كلمة المرور</span><b class="no"><span class="bi center">NEVER<span class="ar-mini">أبداً</span></span></b></div>
+<div class="consent-row"><span>الوصول لبيانات لا توفرها TikTok رسميًا</span><b class="no"><span class="bi center">NO<span class="ar-mini">لا</span></span></b></div>
+<div class="consent-row"><span>إلغاء الربط لاحقًا</span><b class="yes">SUPPORTED DESIGN<span class="ar-mini">مدعوم في التصميم</span></b></div>
 </div>
 <div class="info">زر OAuth الحقيقي سيُفعّل بعد إنشاء Backend آمن وتطبيق TikTok Developer. حاليًا هذه شاشة موافقة وتجهيز فقط.</div>
 </section>
 
 <section id="settings" class="settings panel">
-<div class="section"><span class="title">LOCAL DEVELOPMENT CONFIG</span><b>DEVICE ONLY</b></div>
-<div class="settings-row"><input id="key" type="password" placeholder="YouTube API Key"><button id="saveKey" type="button">SAVE KEY</button><button id="removeKey" class="ghost" type="button">REMOVE</button></div>
+<div class="section"><span class="title bi left">LOCAL DEVELOPMENT CONFIG<span class="ar-mini">إعدادات التطوير المحلية</span></span><b class="bi center">DEVICE ONLY<span class="ar-mini">على هذا الجهاز فقط</span></b></div>
+<div class="settings-row"><input id="key" type="password" placeholder="YouTube API Key"><button id="saveKey" type="button"><span class="bi center">SAVE KEY<span class="ar-mini">حفظ المفتاح</span></span></button><button id="removeKey" class="ghost" type="button"><span class="bi center">REMOVE<span class="ar-mini">إزالة</span></span></button></div>
 <p id="keyStatus" class="muted" style="font-size:10px"></p>
 </section>
 
-<section id="loading" class="loading panel"><div class="radar"></div><div><h3 class="title">ANALYZING VERIFIED PUBLIC DATA</h3><p class="muted" id="loadText">Resolving account...</p></div></section>
+<section id="loading" class="loading panel"><div class="radar"></div><div><h3 class="title">ANALYZING VERIFIED PUBLIC DATA<span class="ar-mini">تحليل البيانات العامة الموثقة</span></h3><p class="muted" id="loadText">Resolving account...</p></div></section>
 
 <section id="results" class="results">
 <div class="tabs panel">
-<button class="tab active" data-tab="overview">Overview</button>
-<button class="tab" data-tab="security">Security</button>
-<button class="tab" data-tab="data">Data</button>
-<button class="tab" data-tab="connected">Connected</button>
-<button class="tab" data-tab="history">History</button>
+<button class="tab active" data-tab="overview"><span class="bi center">Overview<span class="ar-mini">نظرة عامة</span></span></button>
+<button class="tab" data-tab="security"><span class="bi center">Security<span class="ar-mini">الأمان</span></span></button>
+<button class="tab" data-tab="data"><span class="bi center">Data<span class="ar-mini">البيانات</span></span></button>
+<button class="tab" data-tab="connected"><span class="bi center">Connected<span class="ar-mini">المرتبط</span></span></button>
+<button class="tab" data-tab="history"><span class="bi center">History<span class="ar-mini">السجل</span></span></button>
 </div>
 
 <div id="overview" class="tabpane active">
 <div class="grid2">
 <article class="panel">
-<div class="section"><span class="title">PROFILE NODE</span><b id="platform">—</b></div>
+<div class="section"><span class="title bi left">PROFILE NODE<span class="ar-mini">ملف الحساب</span></span><b id="platform">—</b></div>
 <div class="head">
 <div id="avatarWrap"><img id="avatar" class="avatar" alt=""></div>
 <div><h3 id="name">—</h3><p id="handle" class="muted mono" dir="ltr">—</p><small id="verifyState" class="muted">—</small></div>
@@ -114,32 +114,32 @@ footer{text-align:center;color:#3d607a;font:500 9px ui-monospace,monospace;margi
 </article>
 
 <article class="panel">
-<div class="section"><span class="title">SECURITY SUMMARY</span><b>EXPLAINABLE</b></div>
+<div class="section"><span class="title bi left">SECURITY SUMMARY<span class="ar-mini">ملخص الأمان</span></span><b class="bi center">EXPLAINABLE<span class="ar-mini">قابل للتفسير</span></b></div>
 <div class="scorewrap"><div id="ring" class="ring"><div><strong id="score">—</strong><small id="scoreSuffix">/100</small></div></div><div><h3 id="level">—</h3><p id="risk" class="muted">—</p></div></div>
-<div class="coverage"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px"><span>Analysis Coverage</span><b id="coverageText">0%</b></div><div class="bar"><i id="coverageBar"></i></div></div>
+<div class="coverage"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px"><span class="bi left">Analysis Coverage<span class="ar-mini">نسبة تغطية التحليل</span></span><b id="coverageText">0%</b></div><div class="bar"><i id="coverageBar"></i></div></div>
 </article>
 </div>
 </div>
 
 <div id="security" class="tabpane">
-<article class="panel full"><div class="section"><span class="title">VERIFIED SECURITY SIGNALS</span><b>ONLY EVIDENCE</b></div><div id="signals"></div></article>
-<article class="panel full" style="margin-top:16px"><div class="section"><span class="title">RECOMMENDATIONS</span><b>ACTIONABLE</b></div><div id="recs"></div></article>
+<article class="panel full"><div class="section"><span class="title bi left">VERIFIED SECURITY SIGNALS<span class="ar-mini">مؤشرات الأمان الموثقة</span></span><b class="bi center">ONLY EVIDENCE<span class="ar-mini">أدلة فقط</span></b></div><div id="signals"></div></article>
+<article class="panel full" style="margin-top:16px"><div class="section"><span class="title bi left">RECOMMENDATIONS<span class="ar-mini">التوصيات</span></span><b class="bi center">ACTIONABLE<span class="ar-mini">قابلة للتنفيذ</span></b></div><div id="recs"></div></article>
 </div>
 
 <div id="data" class="tabpane">
-<article class="panel full"><div class="section"><span class="title">ACCOUNT DATA</span><b id="dataStatus">—</b></div><div id="dataGrid" class="data"></div></article>
+<article class="panel full"><div class="section"><span class="title bi left">ACCOUNT DATA<span class="ar-mini">بيانات الحساب</span></span><b id="dataStatus">—</b></div><div id="dataGrid" class="data"></div></article>
 </div>
 
 <div id="connected" class="tabpane">
-<article class="panel full"><div class="section"><span class="title">CONNECTED ACCOUNTS</span><b>OWNER MODE</b></div><div id="connectedText" class="muted">لا يوجد حساب Owner Authorized مربوط حاليًا.</div></article>
+<article class="panel full"><div class="section"><span class="title bi left">CONNECTED ACCOUNTS<span class="ar-mini">الحسابات المرتبطة</span></span><b class="bi center">OWNER MODE<span class="ar-mini">وضع المالك</span></b></div><div id="connectedText" class="muted">لا يوجد حساب مربوط حاليًا عبر <span dir="ltr">Owner Authorized</span>.<span class="ar-mini">لا توجد صلاحيات مالك فعّالة حتى الآن.</span></div></article>
 </div>
 
 <div id="history" class="tabpane">
-<article class="panel full"><div class="section"><span class="title">SCAN HISTORY</span><b id="historyCount">0 ITEMS</b></div><div id="historyList"></div></article>
+<article class="panel full"><div class="section"><span class="title bi left">SCAN HISTORY<span class="ar-mini">سجل الفحوصات</span></span><b id="historyCount">0 ITEMS</b></div><div id="historyList"></div></article>
 </div>
 </section>
 
-<footer>SOCIALSCAN LAB // V0.5 // CORE FIX // PUBLIC + OWNER AUTHORIZED</footer>
+<footer>SOCIALSCAN LAB // V0.6 // BILINGUAL UI // MOBILE FIX</footer>
 </main>
 
 <script>
@@ -211,17 +211,17 @@ function analyzePublic(snippet){
  let email=/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i.test(d);
  let phone=/(\+?\d[\d\s().-]{7,}\d)/.test(d);
  let urls=d.match(/https?:\/\/[^\s]+/g)||[];
- if(email){score-=12;sigs.push(["Public email detected",-12,"warn"]);recs.push("راجع ضرورة نشر البريد الإلكتروني علنًا واستخدم بريد أعمال منفصلًا عند الحاجة.")}
- else{sigs.push(["No public email detected",0,"good"])}
- if(phone){score-=18;sigs.push(["Public phone-like data detected",-18,"bad"]);recs.push("أزل رقم الهاتف من المعلومات العامة إذا لم يكن نشره ضروريًا.")}
- else{sigs.push(["No public phone detected",0,"good"])}
- if(urls.length>=6){score-=6;sigs.push(["High external-link exposure",-6,"warn"]);recs.push("راجع الروابط الخارجية المنشورة واحذف غير الضروري.")}
- else{sigs.push(["External-link exposure checked",0,"good"])}
+ if(email){score-=12;sigs.push(["Public email detected / بريد عام ظاهر",-12,"warn"]);recs.push("راجع ضرورة نشر البريد الإلكتروني علنًا واستخدم بريد أعمال منفصلًا عند الحاجة.")}
+ else{sigs.push(["No public email detected / لا يوجد بريد عام ظاهر",0,"good"])}
+ if(phone){score-=18;sigs.push(["Public phone-like data detected / رقم هاتف محتمل ظاهر",-18,"bad"]);recs.push("أزل رقم الهاتف من المعلومات العامة إذا لم يكن نشره ضروريًا.")}
+ else{sigs.push(["No public phone detected / لا يوجد هاتف عام ظاهر",0,"good"])}
+ if(urls.length>=6){score-=6;sigs.push(["High external-link exposure / روابط خارجية كثيرة",-6,"warn"]);recs.push("راجع الروابط الخارجية المنشورة واحذف غير الضروري.")}
+ else{sigs.push(["External-link exposure checked / تم فحص الروابط الخارجية",0,"good"])}
  recs.push("فعّل المصادقة الثنائية <span dir='ltr'>2FA</span>.");
  recs.push("استخدم كلمة مرور فريدة للحساب.");
  recs.push("راجع الجلسات والأجهزة والتطبيقات المرتبطة من إعدادات المنصة.");
  score=Math.max(0,Math.min(100,score));
- let level=score>=85?"Strong public posture":score>=70?"Good public posture":score>=50?"Moderate public exposure":"High public exposure";
+ let level=score>=85?"Strong public posture / وضع عام قوي":score>=70?"Good public posture / وضع عام جيد":score>=50?"Moderate public exposure / تعرض عام متوسط":"High public exposure / تعرض عام مرتفع";
  let risk=score>=85?"لا توجد مؤشرات عامة كبيرة ضمن البيانات التي تم فحصها.":score>=70?"الوضع العام جيد مع بعض النقاط التي تستحق المراجعة.":score>=50?"هناك مؤشرات عامة قد تزيد مخاطر الهندسة الاجتماعية.":"التعرض العام مرتفع ضمن البيانات التي تم فحصها.";
  return{score,coverage,sigs,recs,level,risk};
 }
@@ -236,38 +236,38 @@ function renderSecurity(sec){
  $("level").textContent=sec.level;$("risk").textContent=sec.risk;
  $("coverageText").textContent=sec.coverage+"%";$("coverageBar").style.width=sec.coverage+"%";
  $("ring").style.background=sec.score==null?"conic-gradient(var(--purple) 0 18%,#0c2133 18% 100%)":`conic-gradient(var(--cyan) 0 ${sec.score}%,#0c2133 ${sec.score}% 100%)`;
- $("signals").innerHTML=sec.sigs.map(x=>`<div class="signal"><span>${x[0]}</span><b class="${x[2]}">${x[1]===0?"CHECKED":(x[1]>0?"+":"")+x[1]}</b></div>`).join("");
+ $("signals").innerHTML=sec.sigs.map(x=>`<div class="signal"><span>${x[0]}</span><b class="${x[2]}">${x[1]===0?"CHECKED / تم الفحص":(x[1]>0?"+":"")+x[1]}</b></div>`).join("");
  $("recs").innerHTML=sec.recs.map((x,i)=>`<div class="rec"><b>${String(i+1).padStart(2,"0")}</b><span>${x}</span></div>`).join("");
 }
 
 function renderYT(item,meta){
  let s=item.snippet||{},st=item.statistics||{},sec=analyzePublic(s);
- $("platform").textContent="YOUTUBE";$("name").textContent=s.title||"—";$("handle").textContent=meta.type==="handle"?"@"+meta.value:(s.customUrl||"—");$("verifyState").textContent="Verified through YouTube Data API";
+ $("platform").textContent="YOUTUBE";$("name").textContent=s.title||"—";$("handle").textContent=meta.type==="handle"?"@"+meta.value:(s.customUrl||"—");$("verifyState").innerHTML='Verified through YouTube Data API<span class="ar-mini">تم التحقق عبر YouTube Data API</span>';
  setAvatar(s.thumbnails?.high?.url||s.thumbnails?.default?.url||"","YouTube");
- $("m1").textContent=st.hiddenSubscriberCount?"Hidden":compact(st.subscriberCount);$("m1l").textContent="Subscribers";
- $("m2").textContent=compact(st.viewCount);$("m2l").textContent="Total Views";
- $("m3").textContent=fmt(st.videoCount);$("m3l").textContent="Videos";
+ $("m1").textContent=st.hiddenSubscriberCount?"Hidden":compact(st.subscriberCount);$("m1l").innerHTML='Subscribers<span class="ar-mini">المشتركون</span>';
+ $("m2").textContent=compact(st.viewCount);$("m2l").innerHTML='Total Views<span class="ar-mini">إجمالي المشاهدات</span>';
+ $("m3").textContent=fmt(st.videoCount);$("m3l").innerHTML='Videos<span class="ar-mini">الفيديوهات</span>';
  $("desc").textContent=s.description||"No public description.";
- $("dataStatus").textContent="VERIFIED PUBLIC DATA";
+ $("dataStatus").innerHTML='VERIFIED PUBLIC DATA<span class="ar-mini">بيانات عامة موثقة</span>';
  $("dataGrid").innerHTML=[
- ["Channel ID",item.id||"—"],["Created",dateFmt(s.publishedAt)],["Country",s.country||"Not public"],["Custom URL",s.customUrl||"—"],["Account age",ageTxt(s.publishedAt)],["Avg. views / video",Number(st.videoCount||0)?compact(Math.round(Number(st.viewCount||0)/Number(st.videoCount||1))):"—"]
+ ["Channel ID / معرّف القناة",item.id||"—"],["Created / تاريخ الإنشاء",dateFmt(s.publishedAt)],["Country / البلد",s.country||"Not public / غير معلن"],["Custom URL / الرابط المخصص",s.customUrl||"—"],["Account age / عمر الحساب",ageTxt(s.publishedAt)],["Avg. views / video / متوسط المشاهدات للفيديو",Number(st.videoCount||0)?compact(Math.round(Number(st.viewCount||0)/Number(st.videoCount||1))):"—"]
  ].map(x=>`<div class="card"><span>${x[0]}</span><b>${esc(x[1])}</b></div>`).join("");
  renderSecurity(sec);
  saveHist({platform:"YouTube",handle:meta.type==="handle"?"@"+meta.value:(s.customUrl||item.id),name:s.title||"Unknown",mode:"PUBLIC",score:sec.score,verified:true,at:new Date().toISOString()});
 }
 
 function renderTikTokDetected(meta){
- $("platform").textContent="TIKTOK";$("name").textContent="TikTok URL Detected";$("handle").textContent="@"+meta.value;$("verifyState").textContent="Account existence NOT verified yet";
+ $("platform").textContent="TIKTOK";$("name").innerHTML='TikTok URL Detected<span class="ar-mini">تم اكتشاف رابط TikTok</span>';$("handle").textContent="@"+meta.value;$("verifyState").innerHTML='Account existence NOT verified yet<span class="ar-mini">لم يتم التحقق من وجود الحساب بعد</span>';
  setAvatar("","TikTok");
- $("m1").textContent="—";$("m1l").textContent="Followers";
- $("m2").textContent="—";$("m2l").textContent="Likes";
- $("m3").textContent="—";$("m3l").textContent="Videos";
+ $("m1").textContent="—";$("m1l").innerHTML='Followers<span class="ar-mini">المتابعون</span>';
+ $("m2").textContent="—";$("m2l").innerHTML='Likes<span class="ar-mini">الإعجابات</span>';
+ $("m3").textContent="—";$("m3l").innerHTML='Videos<span class="ar-mini">الفيديوهات</span>';
  $("desc").textContent="تم التعرف على صيغة رابط TikTok فقط. لم يتم التحقق بعد من وجود الحساب أو جلب بياناته من TikTok API.";
- $("dataStatus").textContent="UNVERIFIED URL ONLY";
+ $("dataStatus").innerHTML='UNVERIFIED URL ONLY<span class="ar-mini">رابط غير موثق فقط</span>';
  $("dataGrid").innerHTML=[
- ["Username","@"+meta.value],["Account verification","Not verified"],["Followers","Not available"],["Following","Not available"],["Likes","Not available"],["Videos","Not available"]
+ ["Username / اسم المستخدم","@"+meta.value],["Account verification / التحقق","Not verified / غير موثق"],["Followers / المتابعون","Not available / غير متاح"],["Following / المتابَعون","Not available / غير متاح"],["Likes / الإعجابات","Not available / غير متاح"],["Videos / الفيديوهات","Not available / غير متاح"]
  ].map(x=>`<div class="card"><span>${x[0]}</span><b>${esc(x[1])}</b></div>`).join("");
- renderSecurity({score:null,coverage:10,level:"Insufficient verified data",risk:"لا نعطي Security Score رقميًا قبل توفر بيانات موثوقة كافية.",sigs:[["TikTok URL format recognized",0,"good"],["Account verified via TikTok API",0,"warn"],["Owner authorization connected",0,"warn"]],recs:["استخدم Owner Authorized Scan عند تفعيل TikTok OAuth للحصول على بيانات حقيقية بموافقة صاحب الحساب."]});
+ renderSecurity({score:null,coverage:10,level:"Insufficient verified data / بيانات موثقة غير كافية",risk:"لا نعطي Security Score رقميًا قبل توفر بيانات موثوقة كافية.",sigs:[["TikTok URL format recognized / تم التعرف على صيغة الرابط",0,"good"],["Account verified via TikTok API / التحقق عبر TikTok API",0,"warn"],["Owner authorization connected / تفويض المالك متصل",0,"warn"]],recs:["استخدم Owner Authorized Scan عند تفعيل TikTok OAuth للحصول على بيانات حقيقية بموافقة صاحب الحساب."]});
 }
 
 function hist(){try{return JSON.parse(localStorage.getItem(HIST)||"[]")}catch{return[]}}
