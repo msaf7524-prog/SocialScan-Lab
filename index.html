@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#030711">
-<title>SocialScan Lab v0.6</title>
+<title>SocialScan Lab v0.7</title>
 <style>
 :root{--bg:#030711;--panel:#071222e8;--line:#173b59;--cyan:#42e8ff;--green:#57ffb0;--amber:#ffc857;--red:#ff637c;--text:#edf8ff;--muted:#7f9aae;--purple:#b58cff}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text)}
@@ -41,7 +41,7 @@ footer{text-align:center;color:#3d607a;font:500 9px ui-monospace,monospace;margi
 <header class="top panel"><div class="brand"><div class="logo">S</div><div><h1>SocialScan <span>LAB</span></h1><p>GLOBAL SOCIAL SECURITY INTELLIGENCE<span class="ar-mini">استخبارات الأمان للحسابات الاجتماعية</span></p></div></div><div class="online"><span class="bi center">SYSTEM ONLINE<span class="ar-mini">النظام متصل</span></span></div></header>
 
 <section class="hero panel">
-<div class="eyebrow">SECURITY COMMAND CENTER / V0.6 BILINGUAL</div>
+<div class="eyebrow">SECURITY COMMAND CENTER / V0.7 OAUTH READY</div>
 <h2>فحص موثوق، واضح، وبموافقة صاحب الحساب</h2>
 <p class="muted">النسخة الجديدة تفصل الفحص العام عن فحص المالك، ولا تعرض أي معلومة على أنها مؤكدة إذا لم يتم التحقق منها.</p>
 
@@ -81,12 +81,22 @@ footer{text-align:center;color:#3d607a;font:500 9px ui-monospace,monospace;margi
 <div class="consent-row"><span>الوصول لبيانات لا توفرها TikTok رسميًا</span><b class="no"><span class="bi center">NO<span class="ar-mini">لا</span></span></b></div>
 <div class="consent-row"><span>إلغاء الربط لاحقًا</span><b class="yes">SUPPORTED DESIGN<span class="ar-mini">مدعوم في التصميم</span></b></div>
 </div>
-<div class="info">زر OAuth الحقيقي سيُفعّل بعد إنشاء Backend آمن وتطبيق TikTok Developer. حاليًا هذه شاشة موافقة وتجهيز فقط.</div>
+<div class="info" id="oauthInfo">بعد ضبط رابط الـBackend، سيحوّلك الزر التالي إلى صفحة TikTok الرسمية للموافقة.</div>
+<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+<button id="connectTikTokNow" type="button"><span class="bi center">CONTINUE WITH TIKTOK<span class="ar-mini">المتابعة بواسطة TikTok</span></span></button>
+<button id="disconnectTikTok" class="ghost" type="button"><span class="bi center">DISCONNECT<span class="ar-mini">إلغاء الربط</span></span></button>
+</div>
 </section>
 
 <section id="settings" class="settings panel">
 <div class="section"><span class="title bi left">LOCAL DEVELOPMENT CONFIG<span class="ar-mini">إعدادات التطوير المحلية</span></span><b class="bi center">DEVICE ONLY<span class="ar-mini">على هذا الجهاز فقط</span></b></div>
 <div class="settings-row"><input id="key" type="password" placeholder="YouTube API Key"><button id="saveKey" type="button"><span class="bi center">SAVE KEY<span class="ar-mini">حفظ المفتاح</span></span></button><button id="removeKey" class="ghost" type="button"><span class="bi center">REMOVE<span class="ar-mini">إزالة</span></span></button></div>
+<div class="settings-row" style="margin-top:10px">
+<input id="backendUrl" type="url" placeholder="https://socialscan-api.example.workers.dev">
+<button id="saveBackend" type="button"><span class="bi center">SAVE BACKEND<span class="ar-mini">حفظ رابط الخادم</span></span></button>
+<button id="testBackend" class="ghost" type="button"><span class="bi center">TEST<span class="ar-mini">اختبار</span></span></button>
+</div>
+<p id="backendStatus" class="muted" style="font-size:10px"></p>
 <p id="keyStatus" class="muted" style="font-size:10px"></p>
 </section>
 
@@ -131,7 +141,7 @@ footer{text-align:center;color:#3d607a;font:500 9px ui-monospace,monospace;margi
 </div>
 
 <div id="connected" class="tabpane">
-<article class="panel full"><div class="section"><span class="title bi left">CONNECTED ACCOUNTS<span class="ar-mini">الحسابات المرتبطة</span></span><b class="bi center">OWNER MODE<span class="ar-mini">وضع المالك</span></b></div><div id="connectedText" class="muted">لا يوجد حساب مربوط حاليًا عبر <span dir="ltr">Owner Authorized</span>.<span class="ar-mini">لا توجد صلاحيات مالك فعّالة حتى الآن.</span></div></article>
+<article class="panel full"><div class="section"><span class="title bi left">CONNECTED ACCOUNTS<span class="ar-mini">الحسابات المرتبطة</span></span><b class="bi center">OWNER MODE<span class="ar-mini">وضع المالك</span></b></div><div id="connectedText" class="muted">لا يوجد حساب مربوط حاليًا عبر <span dir="ltr">Owner Authorized</span>.<span class="ar-mini">لا توجد صلاحيات مالك فعّالة حتى الآن.</span></div><div id="connectedProfile" style="margin-top:12px"></div></article>
 </div>
 
 <div id="history" class="tabpane">
@@ -139,19 +149,141 @@ footer{text-align:center;color:#3d607a;font:500 9px ui-monospace,monospace;margi
 </div>
 </section>
 
-<footer>SOCIALSCAN LAB // V0.6 // BILINGUAL UI // MOBILE FIX</footer>
+<footer>SOCIALSCAN LAB // V0.7 // TIKTOK OAUTH READY</footer>
 </main>
 
 <script>
-const $=id=>document.getElementById(id),KEY="socialscan_youtube_api_key",HIST="socialscan_history_v05";
+const $=id=>document.getElementById(id),
+KEY="socialscan_youtube_api_key",
+HIST="socialscan_history_v05",
+BACKEND_KEY="socialscan_backend_url",
+OWNER_SESSION_KEY="socialscan_owner_session";
 let mode="public";
 function showErr(m){$("err").textContent=m;$("err").style.display="block";$("err").scrollIntoView({behavior:"smooth",block:"center"})}
 function clearErr(){$("err").style.display="none"}
 function getKey(){return localStorage.getItem(KEY)||""}
 function keyStatus(){let k=getKey();$("keyStatus").textContent=k?"✓ YouTube API key محفوظ محليًا.":"لم يتم حفظ YouTube API key بعد.";$("keyStatus").style.color=k?"var(--green)":"var(--muted)"}
 keyStatus();
+function backendBase(){return (localStorage.getItem(BACKEND_KEY)||"").replace(/\/+$/,"")}
+function ownerSession(){return sessionStorage.getItem(OWNER_SESSION_KEY)||""}
+function authHeaders(){let s=ownerSession();return s?{Authorization:`Bearer ${s}`}:{}} 
+function backendStatus(){
+ let b=backendBase();
+ $("backendUrl").value=b;
+ $("backendStatus").innerHTML=b
+   ? `✓ Backend configured<span class="ar-mini">تم ضبط رابط الخادم: ${esc(b)}</span>`
+   : `Backend not configured<span class="ar-mini">لم يتم ضبط رابط الخادم بعد.</span>`;
+ $("backendStatus").style.color=b?"var(--green)":"var(--muted)";
+}
+backendStatus();
 
-$("settingsBtn").onclick=()=>{$("settings").style.display=$("settings").style.display==="block"?"none":"block";$("key").value=getKey();keyStatus()};
+$("saveBackend").onclick=()=>{
+ let b=$("backendUrl").value.trim().replace(/\/+$/,"");
+ if(!/^https:\/\/.+/i.test(b)) return showErr("يجب أن يبدأ رابط الـBackend بـ https://");
+ localStorage.setItem(BACKEND_KEY,b);backendStatus();clearErr();
+};
+$("testBackend").onclick=async()=>{
+ clearErr();
+ let b=backendBase();if(!b)return showErr("احفظ رابط الـBackend أولًا.");
+ try{
+  let r=await fetch(b+"/health");
+  let d=await r.json();
+  if(!r.ok||!d.ok)throw Error(d.message||"Health check failed");
+  $("backendStatus").innerHTML=`✓ Backend online — v${d.version}<span class="ar-mini">الخادم متصل ويعمل</span>`;
+  $("backendStatus").style.color="var(--green)";
+ }catch(e){showErr("Backend: "+e.message)}
+};
+
+function consumeOAuthHash(){
+ let raw=location.hash.replace(/^#/,"");if(!raw)return;
+ let q=new URLSearchParams(raw);
+ let session=q.get("socialscan_session"),err=q.get("socialscan_error");
+ if(session){
+  sessionStorage.setItem(OWNER_SESSION_KEY,session);
+  history.replaceState(null,"",location.pathname+location.search);
+  refreshConnectedAccount(true);
+ }else if(err){
+  history.replaceState(null,"",location.pathname+location.search);
+  showErr("TikTok OAuth: "+err);
+ }
+}
+$("connectTikTokNow").onclick=()=>{
+ clearErr();
+ let b=backendBase();
+ if(!b){$("settings").style.display="block";return showErr("أدخل رابط الـBackend من API SETTINGS أولًا.");}
+ location.href=b+"/auth/tiktok/start";
+};
+$("disconnectTikTok").onclick=async()=>{
+ let b=backendBase(),s=ownerSession();
+ try{
+  if(b&&s)await fetch(b+"/auth/tiktok/logout",{method:"POST",headers:{Authorization:`Bearer ${s}`}});
+ }catch{}
+ sessionStorage.removeItem(OWNER_SESSION_KEY);
+ $("connectedProfile").innerHTML="";
+ $("connectedText").innerHTML='لا يوجد حساب مربوط حاليًا.<span class="ar-mini">تم إلغاء جلسة Owner Authorized.</span>';
+};
+
+async function ownerFetch(path){
+ let b=backendBase(),s=ownerSession();
+ if(!b)throw Error("Backend URL غير مضبوط");
+ if(!s)throw Error("لا توجد جلسة Owner Authorized");
+ let r=await fetch(b+path,{headers:{Authorization:`Bearer ${s}`}});
+ let d=await r.json();
+ if(!r.ok||!d.ok)throw Error(d.message||d.error||"Owner API failed");
+ return d;
+}
+
+async function refreshConnectedAccount(openTab=false){
+ let s=ownerSession();
+ if(!s)return;
+ try{
+  let session=await ownerFetch("/api/session");
+  let me=await ownerFetch("/api/tiktok/me");
+  let u=me.user||{};
+  $("connectedText").innerHTML=`✓ TikTok Owner Connected<span class="ar-mini">الحساب مربوط رسميًا بموافقة المالك — الصلاحيات: ${esc((session.scope||"").replaceAll(","," · "))}</span>`;
+  $("connectedProfile").innerHTML=`
+    <div class="data">
+      <div class="card"><span>Display name / الاسم</span><b>${esc(u.display_name||"—")}</b></div>
+      <div class="card"><span>Username / اسم المستخدم</span><b dir="ltr">${esc(u.username?("@"+u.username):"—")}</b></div>
+      <div class="card"><span>Followers / المتابعون</span><b>${fmt(u.follower_count)}</b></div>
+      <div class="card"><span>Following / المتابَعون</span><b>${fmt(u.following_count)}</b></div>
+      <div class="card"><span>Likes / الإعجابات</span><b>${fmt(u.likes_count)}</b></div>
+      <div class="card"><span>Videos / الفيديوهات</span><b>${fmt(u.video_count)}</b></div>
+      <div class="card"><span>Verified / موثق</span><b>${u.is_verified===true?"YES / نعم":u.is_verified===false?"NO / لا":"—"}</b></div>
+      <div class="card"><span>Profile / الملف</span><b>${u.profile_deep_link?`<a href="${esc(u.profile_deep_link)}" target="_blank" style="color:var(--cyan)">OPEN / فتح</a>`:"—"}</b></div>
+    </div>
+    <div class="bio">${esc(u.bio_description||"No bio / لا توجد نبذة")}</div>
+    <div style="margin-top:10px"><button class="alt" id="loadOwnerVideos" type="button"><span class="bi center">LOAD TIKTOK VIDEOS<span class="ar-mini">تحميل فيديوهات TikTok العامة</span></span></button></div>
+    <div id="ownerVideos" style="margin-top:10px"></div>`;
+  document.getElementById("loadOwnerVideos").onclick=loadOwnerVideos;
+  if(openTab){
+    $("results").style.display="block";
+    document.querySelector('[data-tab="connected"]').click();
+    $("results").scrollIntoView({behavior:"smooth",block:"start"});
+  }
+ }catch(e){
+  sessionStorage.removeItem(OWNER_SESSION_KEY);
+  showErr("Owner connection: "+e.message);
+ }
+}
+
+async function loadOwnerVideos(){
+ try{
+  let d=await ownerFetch("/api/tiktok/videos?max_count=10");
+  let videos=d.videos||[];
+  $("ownerVideos").innerHTML=videos.length?videos.map(v=>`
+    <div class="hist">
+      <div><strong>${esc(v.title||v.video_description||("Video "+v.id))}</strong>
+      <small dir="ltr">${fmt(v.view_count)} views · ${fmt(v.like_count)} likes · ${fmt(v.comment_count)} comments · ${fmt(v.share_count)} shares</small></div>
+      ${v.share_url?`<a class="ghost" style="text-decoration:none" href="${esc(v.share_url)}" target="_blank">OPEN</a>`:""}
+    </div>`).join(""):'<div class="muted">لا توجد فيديوهات متاحة ضمن الصلاحية الحالية.</div>';
+ }catch(e){showErr("TikTok videos: "+e.message)}
+}
+consumeOAuthHash();
+refreshConnectedAccount(false);
+
+
+$("settingsBtn").onclick=()=>{$("settings").style.display=$("settings").style.display==="block"?"none":"block";$("key").value=getKey();keyStatus();backendStatus()};
 $("saveKey").onclick=()=>{let k=$("key").value.trim();if(!k)return showErr("الصق YouTube API Key أولًا.");localStorage.setItem(KEY,k);keyStatus()};
 $("removeKey").onclick=()=>{localStorage.removeItem(KEY);$("key").value="";keyStatus()};
 $("clearBtn").onclick=()=>{localStorage.removeItem(HIST);renderHistory()};
