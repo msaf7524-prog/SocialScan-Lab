@@ -1,0 +1,14 @@
+name = "socialscan-api"
+main = "worker.js"
+compatibility_date = "2026-08-28"
+workers_dev = true
+
+# Create a Cloudflare KV namespace, then bind it in the Cloudflare dashboard
+# with the binding name exactly: SESSIONS
+#
+# Secrets/variables required in Cloudflare:
+# TIKTOK_CLIENT_KEY      (secret)
+# TIKTOK_CLIENT_SECRET   (secret)
+# TIKTOK_REDIRECT_URI    e.g. https://socialscan-api.YOUR_SUBDOMAIN.workers.dev/auth/tiktok/callback
+# FRONTEND_URL           https://msaf7524-prog.github.io/SocialScan-Lab/
+# TIKTOK_SCOPES          user.info.basic,user.info.profile,user.info.stats,video.list
